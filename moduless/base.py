@@ -27,10 +27,10 @@ def install_module(call:str):
 
 package_name = __name__.rsplit('.', 1)[0]
 package_dir = os.path.dirname(__file__)
-importlib.import_module(f"{package_name}.lunix")
+
 def importo(modulka):
     importlib.import_module(f"{package_name}.{modulka}")
-
+importlib.import_module(f"{package_name}.lunix")
 async def handle_message(client, message, config:dict):
     if message.from_user and message.from_user.is_self:
         if message.text and message.text.startswith('.'):
@@ -44,7 +44,6 @@ async def handle_message(client, message, config:dict):
                 await client.edit_message_text(message.chat.id, message.id, "❌ **Команда не найдена!**")
 
 for module in os.listdir(package_dir):
-    
     if module.endswith('.py') and not module in ['__init__.py', "lunix.py"]:
         module_name = module[:-3]
         importlib.import_module(f"{package_name}.{module_name}")
