@@ -15,7 +15,7 @@ pip install tgcrypto pyrogram requests
 
 1. Скрипт для авто установки
 ```
-cd ~ && pkg update -y && pkg upgrade -y && pkg install python -y && pkg install python-pip -y && pkg install git -y && git clone https://github.com/nikitapro225/LunixUserbot/ && pip install tgcrypto pyrogram requests
+cd ~ && pkg update -y && pkg upgrade -y && pkg install python -y && pkg install python-pip -y && pkg install git -y && git clone https://github.com/nikitapro225/LunixUserbot/ && pip install tgcrypto pyrogram requests psutil
 ```
 2. Запустить скрипт `main.py`
 ```
