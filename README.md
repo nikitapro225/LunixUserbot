@@ -22,5 +22,5 @@ cd ~ && pkg update -y && pkg upgrade -y && pkg install python -y && pkg install 
 cd LunixUserbot
 python main.py
 ```
-4. Наслаждаться!
+3. Наслаждаться!
 
