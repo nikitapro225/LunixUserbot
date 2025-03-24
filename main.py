@@ -7,8 +7,6 @@ from pyrogram import Client, filters
 import json
 import time
 
-config = {}
-
 from moduless.base import handle_message
 
 def purpleblue(text):
@@ -72,7 +70,8 @@ async def main():
 ██║░░░░░██║░░░██║██║╚████║██║░██╔██╗░
 ███████╗╚██████╔╝██║░╚███║██║██╔╝╚██╗
 ╚══════╝░╚═════╝░╚═╝░░╚══╝╚═╝╚═╝░░╚═╝'''))
-
+    config = load_config()
+    
     api_id = get_api_id(config)
     if api_id is None:
         return
