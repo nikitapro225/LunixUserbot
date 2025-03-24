@@ -6,14 +6,7 @@ import asyncio
 from pyrogram import Client, filters
 import json
 import time
-config = {"session_name": "lunix","prefix": ".","api_id": "","api_hash": ""}
-try:
-    with open("config.json", "r") as f:
-        config = json.load(f)
-except FileNotFoundError:
-    with open("config.json", "w") as f:
-        json.dump(config, f)
-me = {}
+
 config = {}
 
 from moduless.base import handle_message
@@ -29,9 +22,50 @@ def purpleblue(text):
                 red = 0
     return faded
 
+
+def get_api_id(config):
+    if config['api_id'] == "0":
+        while True:
+            api_id = input("Введите api_id: ")
+            if api_id.isdigit():
+                return int(api_id)
+            else:
+                print("Неверный ввод. Пожалуйста, введите числовое значение для api_id.")
+    else:
+        try:
+            return int(config['api_id'])
+        except ValueError:
+            print("ОШИБКА КОНФИГА! api_id должен быть числом.")
+            return None
+
+def save_config(config, filename="config.json"):
+    with open(filename, "w") as f:
+        json.dump(config, f)
+
+def get_api_hash(config):
+    if config['api_hash'] == "0":
+        return input("Введите api_hash: ")
+    else:
+        return config['api_hash']
+
+def load_config(filename="config.json"):
+    default_config = {
+        "session_name": "lunix",
+        "prefix": ".",
+        "api_id": "0",
+        "api_hash": "0"
+    }
+    try:
+        with open(filename, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        with open(filename, "w") as f:
+            json.dump(default_config, f)
+        return default_config
+
+
 async def main():
     os.system('cls' if os.name=='nt' else 'clear')
-    global me, config
     print(purpleblue('''██╗░░░░░██╗░░░██╗███╗░░██╗██╗██╗░░██╗
 ██║░░░░░██║░░░██║████╗░██║██║╚██╗██╔╝
 ██║░░░░░██║░░░██║██╔██╗██║██║░╚███╔╝░
@@ -39,27 +73,16 @@ async def main():
 ███████╗╚██████╔╝██║░╚███║██║██╔╝╚██╗
 ╚══════╝░╚═════╝░╚═╝░░╚══╝╚═╝╚═╝░░╚═╝'''))
 
-    
-    if config['api_id'] == "":
-        cycle = False
-        while cycle:
-            api_id = input("Введите api_id: ")
-            try:
-                api_id = int(api_id)
-                cycle = False
-            except:
-                print("invalid ")
-                cycle = True
-    else:
-        api_id = config['api_id']
-        try:
-            api_id = int(api_id)
-        except:
-            print("ОШИБКА КОНФИГА!")
-    if config['api_id'] == "":
-        api_hash = input("Введите api_hash: ")
-    else:
-        api_hash = config['api_id']
+    api_id = get_api_id(config)
+    if api_id is None:
+        return
+
+    api_hash = get_api_hash(config)
+
+    config['api_id'] = api_id
+    config['api_hash'] = api_hash
+
+    save_config(config)
     
     session_string = "lunix"
     config['start_time'] = time.time()
