@@ -1,4 +1,4 @@
-# Lunix Userbot
+### ![Lunix Userbot](https://github.com/nikitapro225/LunixUserbot/blob/main/images/lunix.png?raw=true)
 > ⚠ Предупреждение! Это **ОТКРЫТЫЙ бета-тест**, бета-версии могут быть **нестабильными** или **неполными**.
 
 ## Установка (Windows)
