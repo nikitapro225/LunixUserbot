@@ -2,7 +2,7 @@ from moduless.base import register_command, register_help, install_module
 try:
     import g4f
 except ModuleNotFoundError:
-    install_module("install -U g4f[all]")
+    install_module("install g4f")
 
 async def gpt(client, message, commandds:dict, config:dict):
     args = message.text.split(" ", 1)
